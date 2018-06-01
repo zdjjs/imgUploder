@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,7 +37,11 @@ class ImageController extends Controller
      */
     public function store(ImageRequest $request)
     {
-    	Storage::putFile('public', $request->file);
+        $request->merge([
+            'filename' => Storage::putFile('public', $request->file)
+        ]);
+
+        Image::create($request->all());
 
         return redirect()->route('index');
     }
