@@ -9,6 +9,7 @@
     </head>
     <body>
     	<h1>画像アップローダー</h1>
+    	<h2>画像をアップロードする</h2>
     	@if (count($errors) > 0)
     		<p>エラーが発生しました</p>
     		<ul>
@@ -27,5 +28,22 @@
             コメント<input type="text" name="comment"><br>
             <button type="submit">アップロード</button>
         </form>
+        <h2>アップロード画像一覧</h2>
+        <table>
+            <tr>
+                <th>画像</th>
+                <th>コメント</th>
+                <th>投稿日</th>
+                <th>更新日</th>
+            </tr>
+            @foreach ($images as $image)
+                <tr>
+                    <td><img src="{{ Storage::url($image->filename) }}" height="40%"></td>
+                    <td>{{ $image->comment ?? '(コメント無し)' }}</td>
+                    <td>{{ $image->created_at }}</td>
+                    <td>{{ $image->updated_at }}</td>
+                </tr>
+            @endforeach
+        </table>
     </body>
 </html>
