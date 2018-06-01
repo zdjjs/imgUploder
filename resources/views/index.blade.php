@@ -9,9 +9,19 @@
     </head>
     <body>
     	<h1>画像アップローダー</h1>
-		<form method="post" action="{{ route('store') }}">
+    	@if (count($errors) > 0)
+    		<p>エラーが発生しました</p>
+    		<ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        	</ul>
+    	@endif
+		<form method="post" action="{{ route('store') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('post') }}
+            画像ファイル<input type="file" name="file"><br>
+            コメント<input type="text" name="comment"><br>
             <button type="submit">アップロード</button>
         </form>
     </body>
