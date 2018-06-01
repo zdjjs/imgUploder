@@ -17,6 +17,9 @@
             @endforeach
         	</ul>
     	@endif
+    	@if (session('success'))
+            <p>{{ session('success') }}</p>
+        @endif
 		<form method="post" action="{{ route('store') }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('post') }}

@@ -43,7 +43,7 @@ class ImageController extends Controller
 
         Image::create($request->all());
 
-        return redirect()->route('index');
+        return redirect()->route('index')->with(['success' => "アップロードしました"]);;
     }
 
     /**
