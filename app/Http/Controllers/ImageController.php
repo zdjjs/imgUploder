@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -35,6 +36,8 @@ class ImageController extends Controller
      */
     public function store(ImageRequest $request)
     {
+    	Storage::putFile('public', $request->file);
+
         return redirect()->route('index');
     }
 
