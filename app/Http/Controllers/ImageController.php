@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImageRequest;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller
@@ -29,10 +30,10 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ImageRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ImageRequest $request)
     {
         return redirect()->route('index');
     }
