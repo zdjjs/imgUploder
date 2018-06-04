@@ -35,6 +35,7 @@
                 <th>コメント</th>
                 <th>投稿日</th>
                 <th>更新日</th>
+                <th>編集</th>
             </tr>
             @foreach ($images as $image)
                 <tr>
@@ -42,6 +43,7 @@
                     <td>{{ $image->comment ?? '(コメント無し)' }}</td>
                     <td>{{ $image->created_at }}</td>
                     <td>{{ $image->updated_at }}</td>
+                    <td><a href="{{ route('edit', $image) }}">編集</a></td>
                 </tr>
             @endforeach
         </table>
