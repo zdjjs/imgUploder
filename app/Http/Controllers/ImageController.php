@@ -82,6 +82,7 @@ class ImageController extends Controller
      */
     public function update(ImageUpdateRequest $request, Image $image)
     {
+        $image->fill($request->all())->save();
         return redirect()->back()->with(['success' => "編集しました"]);
     }
 
