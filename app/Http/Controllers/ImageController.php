@@ -89,11 +89,13 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Image $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Image $image)
     {
-        //
+        Storage::delete($image->filename);
+        $image->delete();
+        return redirect()->back()->with(['success' => "削除しました"]);
     }
 }
