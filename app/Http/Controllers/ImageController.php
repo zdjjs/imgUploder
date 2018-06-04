@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
+use App\Http\Requests\ImageUpdateRequest;
 use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -65,9 +66,11 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Image $image)
     {
-        //
+        return view('edit',[
+            'image' => $image,
+        ]);
     }
 
     /**
@@ -77,9 +80,9 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ImageUpdateRequest $request, Image $image)
     {
-        //
+        return redirect()->back()->with(['success' => "編集しました"]);
     }
 
     /**
