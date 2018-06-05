@@ -15,16 +15,12 @@
         <th>編集</th>
         <th>削除</th>
       </tr>
-      <tr v-for="image in images">
-        <td><img :src="image.filename.replace('public', '/storage')" height="40%"></td>
-        <td>{{image.comment}}</td>
-        <td>{{image.created_at}}</td>
-        <td>{{image.updated_at}}</td>
-        <td><a>編集</a></td>
-        <td>
-          <button @click="deleteImage(image.id)">削除</button>
-        </td>
-      </tr>
+      <image-component
+      v-for="image in images"
+      :key="image.id"
+      :image="image"
+      @delete="deleteImage(id)"
+      @edit="editComment"/>
     </table>
   </div>
 </template>
@@ -47,6 +43,12 @@
         formData.append('comment', this.$refs.comment.value)
         axios.post('/api/', formData).then((response) => {
           this.images.push(response.data)
+        })
+      },
+      editComment({id, comment}) {
+        axios.put(`/api/${id}`, {comment}).then((response) => {
+          let index = this.images.findIndex((image) => image.id === id)
+          this.$set(this.images, index, response.data)
         })
       },
       deleteImage(id) {
