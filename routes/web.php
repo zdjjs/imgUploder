@@ -11,12 +11,12 @@
 |
 */
 
+Route::get('/vue', function () {
+    return view('indexvue');
+});
+
 Route::get('/', 'ImageController@index')->name('index');
 Route::post('/', 'ImageController@store')->name('store');
 Route::get('/{image}', 'ImageController@edit')->name('edit');
 Route::put('/{image}', 'ImageController@update')->name('update');
 Route::delete('/{image}', 'ImageController@destroy')->name('destroy');
-
-Route::get('/vue/', function () {
-    return view('indexvue');
-});
