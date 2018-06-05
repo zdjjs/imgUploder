@@ -1,5 +1,10 @@
 <template>
   <div>
+    <h1>画像アップローダー</h1>
+    <h2>画像をアップロードする</h2>
+    画像ファイル<input type="file" ref="file"><br>
+    コメント<input type="text" ref="comment"><br>
+    <button type="submit" @click="uploadImage">アップロード</button>
     <h2>アップロード画像一覧</h2>
     <table>
       <tr>
@@ -36,6 +41,14 @@
       })
     },
     methods: {
+      uploadImage() {
+        let formData = new FormData()
+        formData.append('file', this.$refs.file.files[0])
+        formData.append('comment', this.$refs.comment.value)
+        axios.post('/api/', formData).then((response) => {
+          this.images.push(response.data)
+        })
+      },
       deleteImage(id) {
         axios.delete(`/api/${id}`).then((response) => {
           this.images = this.images.filter((image) => image.id !== id);
