@@ -17,7 +17,7 @@
         <td>{{image.updated_at}}</td>
         <td><a>編集</a></td>
         <td>
-          <button type="submit">削除</button>
+          <button @click="deleteImage(image.id)">削除</button>
         </td>
       </tr>
     </table>
@@ -34,6 +34,13 @@
       axios('/api/').then((response) => {
         this.images = response.data
       })
+    },
+    methods: {
+      deleteImage(id) {
+        axios.delete(`/api/${id}`).then((response) => {
+          this.images = this.images.filter((image) => image.id !== id);
+        })
+      }
     }
   }
 </script>
