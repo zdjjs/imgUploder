@@ -16,7 +16,7 @@
         <th>削除</th>
       </tr>
       <tr v-for="image in images">
-        <td><img :src="image.filename" height="40%"></td>
+        <td><img :src="image.filename.replace('public', '/storage')" height="40%"></td>
         <td>{{image.comment}}</td>
         <td>{{image.created_at}}</td>
         <td>{{image.updated_at}}</td>
