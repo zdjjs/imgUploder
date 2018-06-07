@@ -14,22 +14,14 @@
     コメント<el-input v-model="comment"/><br>
     <el-button type="success" @click="uploadImage">アップロード</el-button>
     <h2>アップロード画像一覧</h2>
-    <table>
-      <tr>
-        <th>画像</th>
-        <th>コメント</th>
-        <th>投稿日</th>
-        <th>更新日</th>
-        <th>編集</th>
-        <th>削除</th>
-      </tr>
+    <el-row>
       <image-component
       v-for="image in images"
       :key="image.id"
       :image="image"
       @delete="deleteImage(id)"
       @edit="editComment"/>
-    </table>
+    </el-row>
   </div>
 </template>
 <script>

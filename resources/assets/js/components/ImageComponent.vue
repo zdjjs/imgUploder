@@ -1,20 +1,26 @@
 <template>
-  <tr>
-    <td><img :src="image.filename.replace('public', '/storage')" height="40%"></td>
-    <td>{{image.comment}}</td>
-    <td>{{image.created_at}}</td>
-    <td>{{image.updated_at}}</td>
-    <td>
-      <a v-if="!commentEditing" @click="commentEditing=true">編集</a>
-      <template v-else>
-        <input ref="comment" type="text"><br>
-        <button @click="editComment">変更確定</button>
-      </template>
-    </td>
-    <td>
-      <button @click="$emit('delete')">削除</button>
-    </td>
-  </tr>
+  <el-col :span="12">
+    <el-card>
+      <img :src="image.filename.replace('public', '/storage')" width="100%">
+      <div>
+        コメント：{{image.comment}}<br>
+        作成日：{{image.created_at}}<br>
+        更新日：{{image.updated_at}}<br>
+        <div>
+          <el-button type="info" v-if="!commentEditing" @click="commentEditing=true">
+            編集
+          </el-button>
+          <template v-else>
+            <input ref="comment" type="text"><br>
+            <el-button type="submit" @click="editComment">
+              変更確定
+            </el-button>
+          </template>
+        </div>
+        <el-button type="danger" @click="$emit('delete')">削除</el-button>
+      </div>
+    </el-card>
+  </el-col >
 </template>
 <script>
   export default {
