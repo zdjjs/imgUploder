@@ -19,7 +19,7 @@
       v-for="image in images"
       :key="image.id"
       :image="image"
-      @delete="deleteImage(id)"
+      @delete="deleteImage(image.id)"
       @edit="editComment"/>
     </el-row>
   </div>
