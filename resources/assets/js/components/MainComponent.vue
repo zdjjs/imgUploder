@@ -2,9 +2,17 @@
   <div>
     <h1>画像アップローダー</h1>
     <h2>画像をアップロードする</h2>
-    画像ファイル<input type="file" ref="file"><br>
-    コメント<input type="text" ref="comment"><br>
-    <button type="submit" @click="uploadImage">アップロード</button>
+    <el-upload
+    ref="upload"
+    action=""
+    :limit="1"
+    :auto-upload="false">
+      <el-button slot="trigger" size="small" type="primary">
+        クリックしてファイルをアップロード
+      </el-button>
+    </el-upload><br>
+    コメント<el-input v-model="comment"/><br>
+    <el-button type="success" @click="uploadImage">アップロード</el-button>
     <h2>アップロード画像一覧</h2>
     <table>
       <tr>
@@ -28,7 +36,9 @@
   export default {
     data() {
       return {
-        images: []
+        images: [],
+        fileList: [],
+        comment: ''
       }
     },
     mounted() {
@@ -39,8 +49,9 @@
     methods: {
       uploadImage() {
         let formData = new FormData()
-        formData.append('file', this.$refs.file.files[0])
-        formData.append('comment', this.$refs.comment.value)
+        formData.append('file', this.$refs.upload.uploadFiles[0].raw)
+        this.$refs.upload.clearFiles()
+        formData.append('comment', this.comment)
         axios.post('/api/', formData).then((response) => {
           this.images.push(response.data)
         })
