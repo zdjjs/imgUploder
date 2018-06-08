@@ -20,7 +20,7 @@
         <el-button type="danger" @click="$emit('delete')">削除</el-button>
       </div>
     </el-card>
-  </el-col >
+  </el-col>
 </template>
 <script>
   export default {

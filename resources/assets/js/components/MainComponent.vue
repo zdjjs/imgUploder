@@ -14,7 +14,7 @@
     コメント<el-input v-model="comment"/><br>
     <el-button type="success" @click="uploadImage">アップロード</el-button>
     <h2>アップロード画像一覧</h2>
-    <el-row>
+    <el-row type="flex" style="flex-wrap:wrap;">
       <image-component
       v-for="image in images"
       :key="image.id"
