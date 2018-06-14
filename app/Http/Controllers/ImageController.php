@@ -41,7 +41,7 @@ class ImageController extends Controller
     public function store(ImageRequest $request)
     {
         $request->merge([
-            'filename' => Storage::putFile('public', $request->file)
+            'filename' => Storage::url(Storage::putFile('public', $request->file))
         ]);
 
         Image::create($request->all());

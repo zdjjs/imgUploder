@@ -40,7 +40,7 @@
             </tr>
             @foreach ($images as $image)
                 <tr>
-                    <td><img src="{{ Storage::url($image->filename) }}" height="40%"></td>
+                    <td><img src="{{ $image->filename }}" height="40%"></td>
                     <td>{{ $image->comment ?? '(コメント無し)' }}</td>
                     <td>{{ $image->created_at }}</td>
                     <td>{{ $image->updated_at }}</td>
