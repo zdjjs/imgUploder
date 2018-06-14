@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
+use App\Http\Resources\ImageResource;
 use App\Http\Requests\ImageUpdateRequest;
 use App\Image;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ApiImageController extends Controller
      */
     public function index()
     {
-        return Image::orderBy('created_at', 'DESC')->get();
+        return ImageResource::collection(Image::orderBy('created_at', 'DESC')->get());
     }
     
     /**
@@ -33,7 +34,7 @@ class ApiImageController extends Controller
             'filename' => Storage::putFile('public', $request->file)
         ]);
 
-        return Image::create($request->all());
+        return ImageResource::make(Image::create($request->all()));
     }
     
     /**
@@ -46,7 +47,7 @@ class ApiImageController extends Controller
     public function update(ImageUpdateRequest $request, Image $image)
     {
         $image->fill($request->all())->save();
-        return $image;
+        return ImageResource::make($image);
     }
     
     /**

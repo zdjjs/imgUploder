@@ -33,7 +33,7 @@
             @foreach ($images as $image)
               <div>
                 <div style="margin: 10px;border: 1px solid;width:50%;">
-                  <img src="{{ $image->filename }}"><br>
+                  <img src="{{ Storage::url($image->filename) }}"><br>
                   コメント：{{ $image->comment }}<br>
                   作成日：{{ $image->created_at }}<br>
                   更新日：{{ $image->updated_at }}<br>

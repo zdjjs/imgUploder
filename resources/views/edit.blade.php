@@ -24,7 +24,7 @@
     	<form method="post" action="{{ route('update', $image) }}" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('put') }}
-            <img src="{{ $image->filename }}"><br>
+            <img src="{{ Storage::url($image->filename) }}"><br>
             コメント<input type="text" name="comment" value="{{ $image->comment ?? ''}}"><br>
             <button type="submit">編集</button>
         </form>
