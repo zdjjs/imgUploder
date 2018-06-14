@@ -29,31 +29,22 @@
             <button type="submit">アップロード</button>
         </form>
         <h2>アップロード画像一覧</h2>
-        <table>
-            <tr>
-                <th>画像</th>
-                <th>コメント</th>
-                <th>投稿日</th>
-                <th>更新日</th>
-                <th>編集</th>
-                <th>削除</th>
-            </tr>
+
             @foreach ($images as $image)
-                <tr>
-                    <td><img src="{{ $image->filename }}" height="40%"></td>
-                    <td>{{ $image->comment ?? '(コメント無し)' }}</td>
-                    <td>{{ $image->created_at }}</td>
-                    <td>{{ $image->updated_at }}</td>
-                    <td><a href="{{ route('edit', $image) }}">編集</a></td>
-                    <td>
-                		<form method="post" action="{{ route('destroy', $image) }}" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            {{ method_field('delete') }}
-                            <button type="submit">削除</button>
-                        </form>
-                    </td>
-                </tr>
+              <div>
+                <div style="margin: 10px;border: 1px solid;width:50%;">
+                  <img src="{{ $image->filename }}"><br>
+                  コメント：{{ $image->comment }}<br>
+                  作成日：{{ $image->created_at }}<br>
+                  更新日：{{ $image->updated_at }}<br>
+                  <a href="{{ route('edit', $image) }}">編集</a>
+                  <form method="post" action="{{ route('destroy', $image) }}">
+                      {{ csrf_field() }}
+                      {{ method_field('delete') }}
+                      <button type="submit">削除</button>
+                  </form>
+                </div>
+              </div>
             @endforeach
-        </table>
     </body>
 </html>
