@@ -16,6 +16,7 @@ class ImageResource extends Resource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'file_url' => Storage::url($this->filename),
             'comment' => $this->comment,
             'created_at' => $this->created_at,
